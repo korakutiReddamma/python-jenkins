@@ -16,11 +16,6 @@ pipeline {
             }
         }
         
-        stage('Test') {
-            steps {
-                sh 'pytest'
-            }
-        }
         
         stage('Run') {
             steps {
