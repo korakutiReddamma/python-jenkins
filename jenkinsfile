@@ -1,31 +1,3 @@
-// pipeline {
-//     agent any
-    
-//     stages {
-//         stage('Checkout') {
-//             steps {
-//                 git 'https://github.com/korakutiReddamma/python-jenkins.git'
-//             }
-//         }
-        
-//         stage('Build') {
-//             steps {
-//                 sh 'python -m venv myenv'
-//                 sh 'source myenv/bin/activate'
-//                 sh 'pip install -r requirements.txt'
-//             }
-//         }
-        
-        
-//         stage('Run') {
-//             steps {
-//                 sh 'python3 app.py'
-//             }
-//         }
-//     }
-// }
-
-
 pipeline {
   agent any
   stages {
