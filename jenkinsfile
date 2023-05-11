@@ -31,12 +31,17 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh 'pip install -r requirements.txt'
+        sh 'zip flask.zip *'
+        sh 'aws s3 cp flask.zip s3://application-s3-rct/'
       }
     }
     stage('test') {
       steps {
-        sh 'python3 app.py'
+        sh 'aws s3 cp s3://application-s3-rct/flask.zip .'
+        sh 'aws s3 cp s3://application-s3-rct/tom.pem .'
+        sh 'chmod 400 tom.pem'
+        sh 'scp -i tom.pem -o "StrictHostKeyChecking=no" flask.zip ec2-user@172.31.27.151:/home/ec2-user' 
+        sh 'ssh -i tom.pem -o "StrictHostKeyChecking=no" ec2-user@172.31.27.151 "unzip flask.zip"'
       }   
     }
   }
