@@ -1,16 +1,13 @@
-import requests
 from flask import Flask, jsonify
+import json
 
 app = Flask(__name__)
 
-@app.route('/api2')
-def api2():
-    # define your logic to get data from api1 here
-    response = requests.get('http://localhost:5000/api1')
-    print(response)
-    data = response.json()
-    data["message"] = "Hello from API 2! " + data["message"]
+@app.route('/api1')
+def api1():
+    # define your logic to get data here
+    data = {"message": "Hello from API 1!"}
     return jsonify(data)
 
 if __name__ == '__main__':
-     app.run(host='0.0.0.0',debug=True, port=5001)
+    app.run(debug=True, port=5000,host='0.0.0.0')
